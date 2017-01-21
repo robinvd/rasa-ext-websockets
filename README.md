@@ -30,7 +30,7 @@ main = rasa $ do
   networkServer
 ```
 
-now you can use the "Send event listner and the Message event"
+now you can use the "Send" event listner and the "Message" event
 
 function used in the example gif:
 
