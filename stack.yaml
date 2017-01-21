@@ -1,0 +1,16 @@
+flags: {}
+extra-package-dbs: []
+packages:
+        - '.'
+        - location:
+            git: https://github.com/ChrisPenner/rasa
+            commit: 2590794ec74f97228ff3bc45ffaa8d7bf680cb2c
+          subdirs:
+            - rasa
+            - text-lens
+          extra-dep: true
+
+extra-deps:  []
+
+resolver: lts-7.11
+pvp-bounds: both
