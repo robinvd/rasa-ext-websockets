@@ -67,18 +67,15 @@ wsApp stateRef dispatch pendingConn = do
 networkServer :: Action ()
 networkServer = do
   stateRef <- liftIO $ Concurrent.newMVar ([] :: [Client])
-  ext .= (StateRef $ Just stateRef)
+  -- ext .= (StateRef $ Just stateRef)
   onInit $ asyncEventProvider (serverStart stateRef)
 
-  onEveryTrigger_ sendMsg
+  onEveryTrigger_ (sendMsg stateRef)
 
 --sendMsg :: WS.Connection -> Message -> Action ()
-sendMsg (Send msg) = do
-  (StateRef (Just stateRef)) <- (use ext)
-  liftIO $ do
-    clients <- Concurrent.readMVar stateRef
-    Monad.mapM_ (\(_, x) -> WS.sendTextData x msg) clients
-  return ()
+sendMsg stateRef (Send msg) = liftIO $
+  Concurrent.readMVar stateRef
+    >>= Monad.mapM_ (\(_, x) -> WS.sendTextData x msg)
 
 --serverStart :: Concurrent.MVar State -> ((Message -> IO () ) -> IO () ) -> IO ()
 serverStart state dispatch = do

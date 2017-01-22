@@ -26,7 +26,7 @@ import Rasa.Websockets
 main = rasa $ do
 
   ...
-  
+
   networkServer
 ```
 
@@ -41,8 +41,7 @@ main = do
 
 ...
 
-upload _ _ = do
-   x <- buffersDo $ getText
-   dispatchEvent $ Send (Y.toText (head x))
+upload bufRef _ = do
+   bufDo_ bufRef $ getText >>= dispatchEvent . Send . Y.toText
 
 ```
