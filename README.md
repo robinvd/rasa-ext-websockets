@@ -42,6 +42,6 @@ main = do
 ...
 
 upload bufRef _ = do
-   bufDo_ bufRef $ getText >>= dispatchEvent . Send . Y.toText
+   bufDo_ bufRef $ getText >>= dispatchEvent . SendAll . Y.toText
 
 ```
