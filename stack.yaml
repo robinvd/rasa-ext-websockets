@@ -2,9 +2,7 @@ flags: {}
 extra-package-dbs: []
 packages:
         - '.'
-        - location:
-            git: https://github.com/ChrisPenner/rasa
-            commit: 2590794ec74f97228ff3bc45ffaa8d7bf680cb2c
+        - location: ../rasa
           subdirs:
             - rasa
             - text-lens
